@@ -1,1 +1,24 @@
-Hello World !!
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title>Application Mincom</title>
+		<script type="text/javascript" src="/js/jquery-1.9.1.min.js"></script>
+		<script type="text/javascript" src="/js/knockout-2.2.1.js"></script>
+		<script type="text/javascript" src="/js/globalize.js"></script>
+		<script type="text/javascript" src="/js/dx.phonejs.js"></script>
+		<script type="text/javascript">
+			window.AppNamespace = {};
+			$(function () {
+				AppNamespace.app = new DevExpress.framework.html.HtmlApplication(
+					{ namespace: AppNamespace }
+				);
+				AppNamespace.app.router.register(":view", { view: "home" });
+				AppNamespace.app.navigate();
+			});
+		</script>
+	</head>
+	<body>
+		Hello World !
+	</body>
+</html>
