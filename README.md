@@ -1,4 +1,0 @@
-mobilemincom
-============
-
-Appli Mobile Mincom
