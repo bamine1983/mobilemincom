@@ -1,64 +1,68 @@
 <!DOCTYPE html>
-<html>
-	<head>
-		<meta charset="utf-8" />
-		<title>Application Mincom</title>
-		
-		<link rel="stylesheet" type="text/css" href="/css/dx.common.css" />
-		<link rel="stylesheet" type="text/css" href="/css/dx.ios.default.css" />
-		<link rel="stylesheet" type="text/css" href="/css/dx.android.holo-dark.css" />
-		<link rel="stylesheet" type="text/css" href="/css/dx.desktop.default.css" />
-		<link rel="stylesheet" type="text/css" href="/css/dx.win8.black.small.css" />
-	
-		<script type="text/javascript" src="/js/jquery-1.9.1.min.js"></script>
-		<script type="text/javascript" src="/js/knockout-2.2.1.js"></script>
-		<script type="text/javascript" src="/js/globalize.min.js"></script>
-		<script type="text/javascript" src="/js/dx.phonejs.js"></script>
-		<script type="text/javascript">
-			window.AppNamespace = {};
-			$(function () {
-				AppNamespace.app = new DevExpress.framework.html.HtmlApplication({ 
-					namespace: AppNamespace,
-					defaultLayout: "default"
-				});
-				AppNamespace.app.router.register(":view/:name", { view: "home", name: '' });
-				AppNamespace.app.navigate();
-			});
-			AppNamespace.home = function () {
-				var viewModel = {
-					message: ko.observable('Welcome!'),
-					name: ko.observable(''),
-					sayHello: function () {
-						this.message("Hello " + this.name() + '!');
-					},
-					greet: function () {
-						AppNamespace.app.navigate("greeting/" + this.name());
-					}
-				};
-				return viewModel;
-			};
-			AppNamespace.greeting = function (params) {
-				var viewModel = {
-					message: ko.observable('Hello ' + params.name + '!'),
-				};
-				return viewModel;
-			};			
-		</script>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+    <head>
+        <meta charset="utf-8" />
+        <title>My First Application</title>
+		<link rel="stylesheet" type="text/css" href="css/dx.common.css" />
+		<link rel="stylesheet" type="text/css" href="css/dx.ios.default.css" />
+		<link rel="stylesheet" type="text/css" href="css/dx.android.holo-dark.css" />
+		<link rel="stylesheet" type="text/css" href="css/dx.desktop.default.css" />
+		<link rel="stylesheet" type="text/css" href="css/dx.win8.black.small.css" />
+        <script type="text/javascript" src="js/jquery-1.9.1.min.js"></script>
+        <script type="text/javascript" src="js/knockout-2.2.1.js"></script>
+        <script type="text/javascript" src="js/globalize.min.js"></script>
+        <script type="text/javascript" src="js/dx.phonejs.js"></script>
+        <script type="text/javascript">
+            window.AppNamespace = {};
+            $(function () {
+                AppNamespace.app = new DevExpress.framework.html.HtmlApplication(
+                    {
+                        namespace: AppNamespace,
+                        defaultLayout: "default"
+                    }
+                );
+                AppNamespace.app.router.register(":view/:name", { view: "home", name: '' });
+                AppNamespace.app.navigate();
+            });
+            AppNamespace.home = function () {
+                var viewModel = {
+                    message: ko.observable('Welcome!'),
+                    name: ko.observable(''),
+                    sayHello: function () {
+                        this.message("Hello " + this.name() + '!');
+                    },
+                    greet: function () {
+                        AppNamespace.app.navigate("greeting/" + this.name());
+                    }
+                };
+                return viewModel;
+            };
+            AppNamespace.greeting = function (params) {
+                var viewModel = {
+                    message: ko.observable('Hello ' + params.name + '!'),
+                };
+                return viewModel;
+            };
+        </script>
 	</head>
-	<body>
-		<div data-options="dxLayout : { name: 'default' } " >
-			<div data-bind="dxToolbar: { items: [ { text: 'My First Application', align: 'center' } ] }" ></div>      
-			<div data-options="dxContentPlaceholder : { name: 'content', transition: 'slide' } " ></div>
-		</div>
-		<div data-options="dxView: {name: 'home'}">
-			<h1 data-bind="text: message"></h1>
-			Votre nom : <div data-bind="dxTextBox: { value: name }" style="width: 200px"></div>
-			<div data-bind="dxButton: { text: 'Say Hello', clickAction: sayHello }"></div>
-			<div data-bind="dxButton: { text: 'Greet', clickAction: greet }"></div>
-		</div>
-		<div data-options="dxView : { name: 'greeting'} " >
-			<h1 data-bind="text: message"></h1>
-			<div data-bind="dxButton: { text: 'Go back', clickAction: '#_back' }"></div>
-		</div>
-	</body>
+    <body>
+        <div data-options="dxLayout : { name: 'default' } " >
+            <div data-bind="dxToolbar: { items: [ { text: 'My First Application', align: 'center' } ] }" ></div>
+            <div data-options="dxContentPlaceholder : { name: 'content', transition: 'slide' } " ></div>
+        </div>
+        <div data-options="dxView: {name: 'home'}">
+            <div data-options="dxContent : { targetPlaceholder: 'content' } " >
+                <h1 data-bind="text: message"></h1>
+                Enter your name: <div data-bind="dxTextBox: { value: name }" style="width: 200px"></div>
+                <div data-bind="dxButton: { text: 'Say Hello', clickAction: sayHello }"></div>
+                <div data-bind="dxButton: { text: 'Greet', clickAction: greet }"></div>
+            </div>
+        </div> 
+        <div data-options="dxView : { name: 'greeting' } " >
+            <div data-options="dxContent : { targetPlaceholder: 'content' } " >
+                <h1 data-bind="text: message"></h1>
+                <div data-bind="dxButton: { text: 'Go back', clickAction: '#_back' }"></div>
+            </div>
+        </div>         
+    </body>
 </html>
