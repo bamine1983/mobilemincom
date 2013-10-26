@@ -1,6 +1,7 @@
-﻿var statusconx = navigator.onLine ? 'online' : 'offline';
+﻿//var statusconx = navigator.onLine ? 'online' : 'offline';
 MyApp.home = function (params) {
 	var viewModel = {
+		statusconx: ko.observable('connexion  on'),
 		dataSource: DevExpress.data.createDataSource({
 			load: function (loadOptions) {
 				if (loadOptions.refresh) {
@@ -15,12 +16,14 @@ MyApp.home = function (params) {
 							}
 						});
 						deferred.resolve(mapped);
+					})
+					.fail(function() {
+						this.statusconx('connexion off');
 					});
 					return deferred;
 				}
 			}
-		}),
-		statusconx:statusconx
+		})
 	};
 	return viewModel;
 };
