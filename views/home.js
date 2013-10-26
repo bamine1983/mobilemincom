@@ -1,4 +1,5 @@
-﻿MyApp.home = function (params) {
+﻿var statusconx = navigator.onLine ? 'online' : 'offline';
+MyApp.home = function (params) {
 	var viewModel = {
 		dataSource: DevExpress.data.createDataSource({
 			load: function (loadOptions) {
@@ -18,7 +19,8 @@
 					return deferred;
 				}
 			}
-		})
+		}),
+		statusconx:statusconx
 	};
 	return viewModel;
 };
